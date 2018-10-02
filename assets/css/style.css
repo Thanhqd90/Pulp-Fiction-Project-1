@@ -6,6 +6,10 @@ nav {
     font-family: 'Luckiest Guy', cursive;
 }
 
+#menuFav {
+    color: black;
+}
+
 #wikiText {
     margin: 2%;
     font-size: 125%;

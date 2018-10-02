@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    $(".dropdown-trigger").dropdown();
+
     $(document.body).on("click", "#add-vid", function (event) {
         event.preventDefault();
 
