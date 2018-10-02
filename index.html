@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link rel="stylesheet" href="assets/css/reset.css" />
+  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -16,13 +17,12 @@
 <body>
   <!-- Navbar  -->
   <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class=" center brand-logo"><i class="material-icons">library_music</i>Team Pulp Function Project 1
-        Placeholder Title</a>
+    <div class="nav-wrapper pink accent-3">
+      <a href="#!" class=" center brand-logo">Wiki+Tube</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+        <!-- <li><a href="sass.html"><i class="material-icons">search</i></a></li>
         <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li> -->
         <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
       </ul>
     </div>
@@ -30,14 +30,14 @@
 
   <!-- Search Area -->
   <div class="container">
-    <br><br>
-    <h3 class="header center red-text">Test Search Box</h3>
+    <br>
     <form id="vid-form" class="form-inline">
-      <input id="vid-input" class="form-control mr-sm-2" type="search" placeholder="Search for a new song" aria-label="Search">
-      <input id="add-vid" class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit Search">
+      <input id="vid-input" class="form-control mr-sm-2" type="search" placeholder="Search anything..." aria-label="Search">
+      <input id="add-vid" class="btn deep-purple accent-3 my-2 my-sm-0" type="submit" value="Submit">
     </form>
-    <h6>**Open developer console to see results**</h6>
-    <br><br>
+    <br>
+    <div id="wikiCont"></div>
+    <br>
     <div id="vid-view"></div>
   </div>
 
