@@ -3,14 +3,16 @@ $(document).ready(function () {
     $(document.body).on("click", "#add-vid", function (event) {
         event.preventDefault();
 
-        var wikiSearch = $("#vid-input").val().trim();
-        console.log(wikiSearch);
+        // Both ajax calls can use the same input (searchData).
+        var searchData = $("#vid-input").val().trim();
 
-        if (wikiSearch !== "") {
+        console.log(searchData);
 
-            // Wiki API call
+        // Won't do anything if the search is empty.
+        if (searchData !== "") {
 
-            var wikiQueryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + wikiSearch + "&limit=4&format=json";
+            // Wiki ajax section.
+            var wikiQueryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchData + "&limit=4&format=json";
 
             // Create an AJAX call using jsonp to bypass CORS.
             $.ajax({
@@ -36,15 +38,11 @@ $(document).ready(function () {
                 }
             });
 
+            // Youtube ajax section.
             var apikey = "AIzaSyCWG4gCwFSmWaI4si9ItKsSBHtA80xMnEk";
-            var keyword = $("#vid-input").val().trim();
-            var tubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + keyword + "type=video&fields=etag%2Citems%2Ckind%2CnextPageToken%2CpageInfo%2CregionCode&key=" + apikey;
+            var tubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchData + "type=video&fields=etag%2Citems%2Ckind%2CnextPageToken%2CpageInfo%2CregionCode&key=" + apikey;
 
-            if (keyword === "") {
-                return keyword;
-            }
-
-            // Create an AJAX call.
+            // Create an AJAX call to the YouTuve API.
             $.ajax({
                 url: tubeQueryURL,
                 method: "GET"
