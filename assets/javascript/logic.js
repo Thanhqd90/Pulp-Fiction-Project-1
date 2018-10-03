@@ -1,9 +1,15 @@
 $(document).ready(function () {
 
-    // Check to see if index.html can read this file.
-    console.log("Houston, we have code!");
 
-    // Menu trigger for drop-down list.
+  
+
+
+var likeCounter = 0;
+  console.log("Houston, we have code!");
+
+  console.log(firebase);
+
+
     $(".dropdown-trigger").dropdown();
 
     $(document.body).on("click", "#add-vid", function (event) {
@@ -52,7 +58,7 @@ $(document).ready(function () {
             var apikey = "AIzaSyCWG4gCwFSmWaI4si9ItKsSBHtA80xMnEk";
             var tubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchData + "type=video&fields=etag%2Citems%2Ckind%2CnextPageToken%2CpageInfo%2CregionCode&key=" + apikey;
 
-            // Create an AJAX call to the YouTuve API.
+            // Create an AJAX call to the YouTube API.
             $.ajax({
                 url: tubeQueryURL,
                 method: "GET"
@@ -65,7 +71,21 @@ $(document).ready(function () {
 
                 var newDiv = $("<div class='vid-results'>");
 
-                // Empty the video div ' vid-view' if it's occupied.
+
+                
+
+                $("#like-button").on("click", function() {
+
+                    // Add to like count
+                    likeCounter++;
+              
+                    //  Store like data in database
+                    database.ref().set({
+                      likeCount: likeCounter
+                    });
+                  });
+
+ Empty the video div ' vid-view' if it's occupied.
                 $("#vid-view").empty();
 
                 for (var i = 0; i < 5; i++) {
@@ -86,6 +106,8 @@ $(document).ready(function () {
                                         <h6><strong>Title:</strong> ${vidTitle}</h6>
                                     <br>
                                         <p><strong>Description:</strong> ${vidDes}</p>
+                                        <button class="btn waves-effect waves-light light-blue" type="submit" name="action">Like this video: <i class="far fa-thumbs-up"></i> ${likeCounter}</button>
+                                        <button class="btn waves-effect waves-light pink accent-3" type="submit" name="action">Add to favorites: <i class="fas fa-heart"></i>
                                     </div>
                                 </div>
                             </div>
