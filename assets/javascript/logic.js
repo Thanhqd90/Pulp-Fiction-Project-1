@@ -1,19 +1,21 @@
 $(document).ready(function () {
+    // add parallax theme
+    $('.parallax').parallax();
 
-
-  
-
-
-var likeCounter = 0;
-  console.log("Houston, we have code!");
-
-  console.log(firebase);
+    var likeCounter = 0;
+    console.log("Houston, we have code!");
+    console.log(firebase);
 
 
     $(".dropdown-trigger").dropdown();
 
     $(document.body).on("click", "#add-vid", function (event) {
         event.preventDefault();
+
+        // scroll to search results
+        $('html, body').animate({
+            scrollTop: $("#results").offset().top
+        }, 1000);
 
         // Both ajax calls can use the same input variable, 'searchData'.
         var searchData = $("#vid-input").val().trim();
@@ -72,20 +74,20 @@ var likeCounter = 0;
                 var newDiv = $("<div class='vid-results'>");
 
 
-                
 
-                $("#like-button").on("click", function() {
+
+                $("#like-button").on("click", function () {
 
                     // Add to like count
                     likeCounter++;
-              
+
                     //  Store like data in database
                     database.ref().set({
-                      likeCount: likeCounter
+                        likeCount: likeCounter
                     });
-                  });
+                });
 
-//  Empty the video div ' vid-view' if it's occupied.
+                //  Empty the video div ' vid-view' if it's occupied.
                 $("#vid-view").empty();
 
                 for (var i = 0; i < 5; i++) {

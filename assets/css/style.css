@@ -1,5 +1,6 @@
 body {
-    background-color: #222222;
+    
+
 }
 
 nav {
@@ -17,4 +18,19 @@ nav {
 
 #vid-input {
     color: white;
+}
+
+#search-area {
+  margin-top: 400px;
+}
+
+.list-results {
+    /* width: 100%;
+    height: 400px;
+    background-color: brown; */
+    
+}
+
+.parallax-container {
+    height: 100%;
 }
