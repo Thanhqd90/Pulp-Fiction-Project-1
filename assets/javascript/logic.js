@@ -9,6 +9,7 @@ projectId: "pulp-functions",
 storageBucket: "pulp-functions.appspot.com",
 messagingSenderId: "167017299988"
 };
+
 firebase.initializeApp(config);
 
 var likeCounter = 0;
