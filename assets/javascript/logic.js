@@ -6,6 +6,8 @@ $(document).ready(function () {
     console.log("Houston, we have code!");
     console.log(firebase);
 
+    $('.fixed-action-btn').floatingActionButton();
+
 
     $(".dropdown-trigger").dropdown();
 
@@ -119,7 +121,7 @@ $(document).ready(function () {
             });
 
             // Event to download the Wiki content in a plaint text document.
-            $(document).on("click", "#menuDl", function (event) {
+            $(document).on("click", "#btn-archive", function (event) {
                 event.preventDefault();
                 download(wikiContent, searchData + ".txt", "text/plain");
             });
