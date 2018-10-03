@@ -1,37 +1,45 @@
 $(document).ready(function () {
 
+    // Check to see if index.html can read this file.
+    console.log("Houston, we have code!");
+
+    // Menu trigger for drop-down list.
     $(".dropdown-trigger").dropdown();
 
     $(document.body).on("click", "#add-vid", function (event) {
         event.preventDefault();
 
-        // Both ajax calls can use the same input (searchData).
+        // Both ajax calls can use the same input variable, 'searchData'.
         var searchData = $("#vid-input").val().trim();
-
         console.log(searchData);
 
-        // Won't do anything if the search is empty.
+        var wikiContent;
+
+        // Won't do anything if 'vid-input' is empty.
         if (searchData !== "") {
 
-            // Wiki ajax section.
+            // Wiki AJAX section.
             var wikiQueryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchData + "&limit=4&format=json";
 
-            // Create an AJAX call using jsonp to bypass CORS.
             $.ajax({
                 url: wikiQueryURL,
                 dataType: "jsonp",
                 success: function (wiki) {
 
-                    var wikiTitle = wiki[2];
-                    var wikiDiv = $("<div class='wikiData'>");
+                    //console.log(wiki);
 
-                    console.log(wiki);
+                    var wikiData = wiki[2];
+
+                    // Pass content to a global variable, 'wikiContent'.
+                    wikiContent = wikiData;
+
+                    var wikiDiv = $("<div class='wikiData'>");
 
                     wikiDiv.append(`
                             <div class="col s12 m7">
                                 <div class="card horizontal">
                                     <div id="wikiText">
-                                        <p>${wikiTitle}</p>
+                                        <p>${wikiData}</p>
                                     </div>
                                 </div>
                             </div>`);
@@ -40,7 +48,7 @@ $(document).ready(function () {
                 }
             });
 
-            // Youtube ajax section.
+            // Youtube AJAX section.
             var apikey = "AIzaSyCWG4gCwFSmWaI4si9ItKsSBHtA80xMnEk";
             var tubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchData + "type=video&fields=etag%2Citems%2Ckind%2CnextPageToken%2CpageInfo%2CregionCode&key=" + apikey;
 
@@ -57,14 +65,16 @@ $(document).ready(function () {
 
                 var newDiv = $("<div class='vid-results'>");
 
+                // Empty the video div ' vid-view' if it's occupied.
                 $("#vid-view").empty();
+
                 for (var i = 0; i < 5; i++) {
-                    // JSON path
+                    // JSON path.
                     var vidTitle = item[i].snippet.title;
                     var vidURL = item[i].id.videoId;
                     var vidDes = item[i].snippet.description;
 
-                    // Append gifs inside of a card body with template literals
+                    // Append embedded videos inside of a cards with template literals.
                     newDiv.append(`
                         <div class="col s12 m7">
                             <div class="card horizontal">
@@ -82,6 +92,12 @@ $(document).ready(function () {
                         </div>`);
                 }
                 $("#vid-view").append(newDiv);
+            });
+
+            // Event to download the Wiki content in a plaint text document.
+            $(document).on("click", "#menuDl", function (event) {
+                event.preventDefault();
+                download(wikiContent, searchData + ".txt", "text/plain");
             });
         }
     });
