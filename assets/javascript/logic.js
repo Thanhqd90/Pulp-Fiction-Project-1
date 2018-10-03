@@ -1,5 +1,15 @@
 $(document).ready(function () {
 
+// Initialize Firebase
+var config = {
+apiKey: "AIzaSyBUq710k0unXdSq00_TsSlTmLnmp6cA9BE",
+authDomain: "pulp-functions.firebaseapp.com",
+databaseURL: "https://pulp-functions.firebaseio.com",
+projectId: "pulp-functions",
+storageBucket: "pulp-functions.appspot.com",
+messagingSenderId: "167017299988"
+};
+firebase.initializeApp(config);
 
 var likeCounter = 0;
 
@@ -66,7 +76,7 @@ var likeCounter = 0;
 
                     // Add to like count
                     likeCounter++;
-              
+
                     //  Store like data in database
                     database.ref().set({
                       likeCount: likeCounter
