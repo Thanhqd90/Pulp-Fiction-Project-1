@@ -85,7 +85,7 @@ var likeCounter = 0;
                     });
                   });
 
- Empty the video div ' vid-view' if it's occupied.
+//  Empty the video div ' vid-view' if it's occupied.
                 $("#vid-view").empty();
 
                 for (var i = 0; i < 5; i++) {
