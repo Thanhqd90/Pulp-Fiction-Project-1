@@ -3,8 +3,6 @@ $(document).ready(function () {
 
 var likeCounter = 0;
 
-console.log(data)
-
   console.log(firebase);
 
     $(".dropdown-trigger").dropdown();
