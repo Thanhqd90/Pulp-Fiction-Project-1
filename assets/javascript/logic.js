@@ -48,7 +48,7 @@ firebase.initializeApp(config);
                 dataType: "jsonp",
                 success: function (wiki) {
 
-                    //console.log(wiki);
+                    console.log(wiki);
 
                     var wikiData = wiki[2];
 
@@ -61,7 +61,10 @@ firebase.initializeApp(config);
                             <div class="col s12 m7">
                                 <div class="card horizontal">
                                     <div id="wikiText">
-                                        <p>${wikiData}</p>
+                                    <ul>
+                                        <li>${wikiData[0]}</li><br>
+                                        <li>${wikiData[1]}</li><br>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>`);
@@ -112,22 +115,21 @@ firebase.initializeApp(config);
 
                     // Append embedded videos inside of a cards with template literals.
                     newDiv.append(`
-                        <div class="col s12 m7">
-                            <div class="card horizontal">
-                                <div class="card-image">
-                                    <iframe allow="fullscreen" width="450" height="300" src="https://www.youtube.com/embed/${vidURL}"></iframe>
-                                </div>
-                                <div class="card-stacked">
-                                    <div class="card-content">
-                                        <h6><strong>Title:</strong> ${vidTitle}</h6>
-                                    <br>
-                                        <p><strong>Description:</strong> ${vidDes}</p>
-                                        <button class="btn waves-effect waves-light light-blue" type="submit" name="action">Like this video: <i class="far fa-thumbs-up"></i> ${likeCounter}</button>
-                                        <button class="btn waves-effect waves-light pink accent-3" type="submit" name="action">Add to favorites: <i class="fas fa-heart"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`);
+                    <div class="col s12 m6">
+                    <div class="card center grey darken-4">
+                      <div class="card-content white-text">
+                        <span class="card-title">${vidTitle}</span>
+                        <div class="resp-container">
+                        <iframe class="resp-iframe" src="https://www.youtube.com/embed/${vidURL}" gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
+                    </div>
+                      </div>
+                      <div class="card-action">
+                      <button class="btn waves-effect waves-light light-blue" type="submit" name="action">Like this video: <i class="far fa-thumbs-up"></i> ${likeCounter}</button>
+                      <button class="btn waves-effect waves-light pink accent-3" type="submit" name="action">Add to favorites: <i class="fas fa-heart"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>`);
                 }
                 $("#vid-view").append(newDiv);
             });
