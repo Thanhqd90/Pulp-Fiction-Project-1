@@ -2,6 +2,18 @@ $(document).ready(function () {
     // add parallax theme
     $('.parallax').parallax();
 
+// Initialize Firebase
+var config = {
+apiKey: "AIzaSyBUq710k0unXdSq00_TsSlTmLnmp6cA9BE",
+authDomain: "pulp-functions.firebaseapp.com",
+databaseURL: "https://pulp-functions.firebaseio.com",
+projectId: "pulp-functions",
+storageBucket: "pulp-functions.appspot.com",
+messagingSenderId: "167017299988"
+};
+
+firebase.initializeApp(config);
+  
     var likeCounter = 0;
     console.log("Houston, we have code!");
     console.log(firebase);
