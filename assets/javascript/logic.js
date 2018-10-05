@@ -2,19 +2,19 @@ $(document).ready(function () {
     // add parallax theme
     $('.parallax').parallax();
 
-// Initialize Firebase
-var config = {
-apiKey: "AIzaSyBUq710k0unXdSq00_TsSlTmLnmp6cA9BE",
-authDomain: "pulp-functions.firebaseapp.com",
-databaseURL: "https://pulp-functions.firebaseio.com",
-projectId: "pulp-functions",
-storageBucket: "pulp-functions.appspot.com",
-messagingSenderId: "167017299988"
-};
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyB2VCD1HecsHeNm0svNtWC2dJ5mUz7X0Lg",
+        authDomain: "classapp-7477b.firebaseapp.com",
+        databaseURL: "https://classapp-7477b.firebaseio.com",
+        projectId: "classapp-7477b",
+        storageBucket: "classapp-7477b.appspot.com",
+        messagingSenderId: "360629441836"
+    };
+    firebase.initializeApp(config);
 
-firebase.initializeApp(config);
-  
-    var likeCounter = 0;
+    var database = firebase.database();
+
     console.log("Houston, we have code!");
     console.log(firebase);
 
@@ -90,48 +90,81 @@ firebase.initializeApp(config);
 
                 var newDiv = $("<div class='vid-results'>");
 
-
-
-
-                $("#like-button").on("click", function () {
-
-                    // Add to like count
-                    likeCounter++;
-
-                    //  Store like data in database
-                    database.ref().set({
-                        likeCount: likeCounter
-                    });
-                });
-
                 //  Empty the video div ' vid-view' if it's occupied.
                 $("#vid-view").empty();
-
                 for (var i = 0; i < 5; i++) {
+
                     // JSON path.
                     var vidTitle = item[i].snippet.title;
                     var vidURL = item[i].id.videoId;
-                    var vidDes = item[i].snippet.description;
 
                     // Append embedded videos inside of a cards with template literals.
                     newDiv.append(`
-                    <div class="col s12 m6">
-                    <div class="card center grey darken-4">
-                      <div class="card-content white-text">
-                        <span class="card-title">${vidTitle}</span>
-                        <div class="resp-container">
-                        <iframe class="resp-iframe" src="https://www.youtube.com/embed/${vidURL}" gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
-                    </div>
-                      </div>
-                      <div class="card-action">
-                      <button class="btn waves-effect waves-light light-blue" type="submit" name="action">Like this video: <i class="far fa-thumbs-up"></i> ${likeCounter}</button>
-                      <button class="btn waves-effect waves-light pink accent-3" type="submit" name="action">Add to favorites: <i class="fas fa-heart"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>`);
+                        <div class="col s12 m6">
+                            <div class="card center grey darken-4">
+                                <div class="card-content white-text">
+                                    <span class="card-title">${vidTitle}</span>
+                                    <div class="resp-container">
+                                        <iframe class="resp-iframe" src="https://www.youtube.com/embed/${vidURL}" gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <button id="${vidURL}" class="btn like-button waves-effect waves-light light-blue" type="submit" name="action">Like this video: <i class="far fa-thumbs-up"></i></button>
+                                    <button id="${vidURL}" class="btn like-button waves-effect waves-light red" type="submit" name="action">Likes:  0</button>
+                                </div>
+                            </div>
+                        </div>`);
+
+                    $("#vid-view").append(newDiv);
+
+                    var vLikes = database.ref("vids/" + vidURL);
+
+                    vLikes.set({
+                        likes: false
+                    });
                 }
-                $("#vid-view").append(newDiv);
+
+
+
+
+            });
+
+            $(document).on("click", ".like-button", function (event) {
+                event.preventDefault();
+
+                var btnId = event.target.id;
+                console.log(btnId);
+
+                var vLikesUp = database.ref("vids/" + btnId + "/");
+                console.log("This is what we are looking for" + btnId);
+
+                setTimeout(function () {
+
+                    vLikesUp.set({
+                        likes: true
+                    });
+
+                }, 500);
+                $('.like-button').text("liked");
+            });
+
+            database.ref().on("value", function (snapshot) {
+
+                // Then we console.log the value of snapshot
+                console.log(snapshot.val());
+
+                // Then we change the html associated with the number.
+                //$(".like-count0").text(snapshot.val().likeCount);
+                //$(".like-count1").text(snapshot.val().likeCount);
+                //$(".like-count2").text(snapshot.val().likeCount);
+                // $(".like-count3").text(snapshot.val().likeCount);
+                //$(".like-count4").text(snapshot.val().likeCount);
+
+                //likeCounter = snapshot.val().likes;
+            }, function (errorObject) {
+
+                // In case of error this will print the error
+                console.log("The read failed: " + errorObject.code);
             });
 
             // Event to download the Wiki content in a plaint text document.

@@ -15,6 +15,10 @@ nav {
     font-size: 125%;
 }
 
+#vid-view {
+    margin-bottom: 8%;
+}
+
 #vid-input {
     color: white;
 }
@@ -57,6 +61,7 @@ nav {
     text-align: center;
     padding: 1%;
     font-family: 'Luckiest Guy', cursive;
+    z-index: 2;
     box-shadow: 0px 0px 10px rgba(0,0,0,.8);
  }
 
