@@ -7,15 +7,15 @@ Live Link
 https://thanhqd90.github.io/Pulp-Fiction-Project-1/
 
 
-ooooooooo.               oooo                  oooooooooooo                                       .    o8o                                 
-`888   `Y88.             `888                  `888'     `8                                     .o8    `"'                                 
- 888   .d88' oooo  oooo   888  oo.ooooo.        888         oooo  oooo  ooo. .oo.    .ooooo.  .o888oo oooo   .ooooo.  ooo. .oo.    .oooo.o 
- 888ooo88P'  `888  `888   888   888' `88b       888oooo8    `888  `888  `888P"Y88b  d88' `"Y8   888   `888  d88' `88b `888P"Y88b  d88(  "8 
- 888          888   888   888   888   888       888    "     888   888   888   888  888         888    888  888   888  888   888  `"Y88b.  
- 888          888   888   888   888   888       888          888   888   888   888  888   .o8   888 .  888  888   888  888   888  o.  )88b 
-o888o         `V88V"V8P' o888o  888bod8P'      o888o         `V88V"V8P' o888o o888o `Y8bod8P'   "888" o888o `Y8bod8P' o888o o888o 8""888P' 
-                                888                                                                                                        
-                               o888o  
+\ooooooooo.               oooo                  oooooooooooo                                       .    o8o                             \    
+\`888   `Y88.             `888                  `888'     `8                                     .o8    `"'                             \    
+\ 888   .d88' oooo  oooo   888  oo.ooooo.        888         oooo  oooo  ooo. .oo.    .ooooo.  .o888oo oooo   .ooooo.  ooo. .oo.    \.oooo.o 
+\ 888ooo88P'  `888  `888   888   888' `88b       888oooo8    `888  `888  `888P"Y88b  d88' `"Y8   888   `888  d88' `88b `888P"Y88b  d88(  \"8 
+\ 888          888   888   888   888   888       888    "     888   888   888   888  888         888    888  888   888  888   888  \`"Y88b.  
+ \888          888   888   888   888   888       888          888   888   888   888  888   .o8   888 .  888  888   888  888   888  o.  \)88b 
+\o888o         `V88V"V8P' o888o  888bod8P'      o888o         `V88V"V8P' o888o o888o `Y8bod8P'   "888" o888o `Y8bod8P' o888o o888o \8""888P' 
+\                                888                                                                                                      \  
+\                               o888o  
 
 
 
