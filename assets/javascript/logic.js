@@ -64,11 +64,13 @@ $(document).ready(function () {
                     var wikiDiv = $("<div class='wikiData'>");
                         if (wikiContent.length === 0) {
                             $('#vid-input').attr('placeholder', 'No Results Found');
+                            $("#vid-view").empty();
                             wikiDiv.hide();
 
                             setTimeout(function () {
 
                                 $('#vid-input').attr('placeholder', 'Search Anything...');
+                                
             
                             }, 2000);
                         }
