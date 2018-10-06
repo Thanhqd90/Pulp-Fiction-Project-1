@@ -19,7 +19,9 @@ $(document).ready(function () {
     console.log(firebase);
 
     $(document).ready(function () {
-        $('.fixed-action-btn').floatingActionButton({ direction: "left" });
+        $('.fixed-action-btn').floatingActionButton({
+            direction: "left"
+        });
     });
 
 
@@ -41,7 +43,7 @@ $(document).ready(function () {
 
         var wikiContent;
 
-    
+
 
         // Won't do anything if 'vid-input' is empty.
         if (searchData !== "") {
@@ -53,28 +55,28 @@ $(document).ready(function () {
                 url: wikiQueryURL,
                 dataType: "jsonp",
                 success: function (wiki) {
-                    
+
                     console.log(wiki);
-                    
+
                     var wikiData = wiki[2];
-                    
+
                     // Pass content to a global variable, 'wikiContent'.
                     wikiContent = wikiData;
-                    
+
                     var wikiDiv = $("<div class='wikiData'>");
-                        if (wikiContent.length === 0) {
-                            $('#vid-input').attr('placeholder', 'No Results Found');
-                            $("#vid-view").empty();
-                            wikiDiv.hide();
+                    if (wikiContent.length === 0) {
+                        $('#vid-input').attr('placeholder', 'No Results Found');
+                        $("#vid-view").empty();
+                        wikiDiv.hide();
 
-                            setTimeout(function () {
+                        setTimeout(function () {
 
-                                $('#vid-input').attr('placeholder', 'Search Anything...');
-                                
-            
-                            }, 2000);
-                        }
-                    
+                            $('#vid-input').attr('placeholder', 'Search Anything...');
+
+
+                        }, 2000);
+                    }
+
 
                     wikiDiv.append(`
                             <div class="col s12 m7">
@@ -91,9 +93,9 @@ $(document).ready(function () {
                             </div>`);
                     $("#wikiCont").html(wikiDiv);
                     $("#vid-input").val("");
-                    
+
                 }
-                
+
             });
 
 
@@ -122,6 +124,8 @@ $(document).ready(function () {
                     var vidTitle = item[i].snippet.title;
                     var vidURL = item[i].id.videoId;
 
+                    if (vidTitle.includes(searchData)) {
+
                     // Append embedded videos inside of a cards with template literals.
                     newDiv.append(`
                         <div class="col s12 m6">
@@ -147,6 +151,7 @@ $(document).ready(function () {
                         likes: false
                     });
                 }
+            }
 
 
 
@@ -217,7 +222,7 @@ $(document).ready(function () {
         $(".vid-color").toggleClass("blue darken-4");
         $(".wiki-color").toggleClass("blue darken-4");
         $("#results").toggleClass("dark-results");
-        
+
     });
 
 });
