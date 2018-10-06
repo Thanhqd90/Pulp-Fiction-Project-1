@@ -83,6 +83,8 @@ $(document).ready(function () {
                                     <ul>
                                         <li>${wikiData[0]}</li><br>
                                         <li>${wikiData[1]}</li><br>
+                                        <li>Click <a href="${wiki[3][0]}" target="_blank">here</a> to read more</li><br>
+
                                         </ul>
                                     </div>
                                 </div>
