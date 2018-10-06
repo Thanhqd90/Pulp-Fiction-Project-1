@@ -41,6 +41,8 @@ $(document).ready(function () {
 
         var wikiContent;
 
+    
+
         // Won't do anything if 'vid-input' is empty.
         if (searchData !== "") {
 
@@ -51,15 +53,26 @@ $(document).ready(function () {
                 url: wikiQueryURL,
                 dataType: "jsonp",
                 success: function (wiki) {
-
+                    
                     console.log(wiki);
-
+                    
                     var wikiData = wiki[2];
-
+                    
                     // Pass content to a global variable, 'wikiContent'.
                     wikiContent = wikiData;
-
+                    
                     var wikiDiv = $("<div class='wikiData'>");
+                        if (wikiContent.length === 0) {
+                            $('#vid-input').attr('placeholder', 'No Results Found');
+                            wikiDiv.hide();
+
+                            setTimeout(function () {
+
+                                $('#vid-input').attr('placeholder', 'Search Anything...');
+            
+                            }, 2000);
+                        }
+                    
 
                     wikiDiv.append(`
                             <div class="col s12 m7">
@@ -74,8 +87,11 @@ $(document).ready(function () {
                             </div>`);
                     $("#wikiCont").html(wikiDiv);
                     $("#vid-input").val("");
+                    
                 }
+                
             });
+
 
             // Youtube AJAX section.
             var apikey = "AIzaSyCWG4gCwFSmWaI4si9ItKsSBHtA80xMnEk";
