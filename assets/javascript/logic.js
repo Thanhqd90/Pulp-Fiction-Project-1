@@ -27,11 +27,10 @@ $(document).ready(function () {
 
     // Add parallax theme.
     $('.parallax').parallax();
-    $('.fixed-action-btn').floatingActionButton();
-    $(document).ready(function () {
-        $('.fixed-action-btn').floatingActionButton({
-            direction: "left"
-        });
+
+    // Floating action button animation.
+    $('.fixed-action-btn').floatingActionButton({
+        direction: "left"
     });
 
     // Global variables.
@@ -41,25 +40,21 @@ $(document).ready(function () {
     var urlArray1 = [];
     var urlArray2 = [];
 
-
-
     $(document.body).on("click", "#add-vid", function (e) {
         e.preventDefault();
 
-        // scroll to search results
+        // Scroll to search results.
         $('html, body').animate({
             scrollTop: $("#results").offset().top
         }, 1000);
 
-
-
-        // Both ajax calls can use the same input variable, 'searchData'.
+        // Both AJAX calls can use the same input variable, 'searchData'.
         var searchData = $("#vid-input").val().trim();
+
         //console.log(searchData);
 
+        // Local variable.
         var wikiContent;
-
-
 
         // Won't do anything if 'vid-input' is empty.
         if (searchData !== "") {
@@ -74,14 +69,16 @@ $(document).ready(function () {
 
                     //console.log(wiki);
 
+                    // Local variable.
                     var wikiData = wiki[2];
 
                     // Pass content to a global variable, 'wikiContent'.
                     wikiContent = wikiData;
 
                     var wikiDiv = $("<div class='wikiData'>");
+
                     if (wikiContent.length === 0) {
-                        $('#vid-input').attr('placeholder', 'No Results Found');
+                        $('#vid-input').attr('placeholder', 'No Results Found.');
                         $("#vid-view").empty();
                         wikiDiv.hide();
 
@@ -89,31 +86,26 @@ $(document).ready(function () {
 
                             $('#vid-input').attr('placeholder', 'Search Anything...');
 
-
                         }, 2000);
                     }
 
-
                     wikiDiv.append(`
-                            <div class="col s12 m7">
-                                <div class=" wiki-color card horizontal blue darken-4">
-                                    <div id="wikiText">
+                        <div class="col s12 m7">
+                            <div class=" wiki-color card horizontal blue darken-4">
+                                <div id="wikiText">
                                     <ul>
                                         <li>${wikiData[0]}</li><br>
                                         <li>${wikiData[1]}</li><br>
-                                        <li>Click <a href="${wiki[3][0]}" target="_blank">here</a> to read more</li><br>
-
-                                        </ul>
-                                    </div>
+                                        <li>Click <a href="${wiki[3][0]}" target="_blank">here</a> to read more.</li>
+                                        <br>
+                                    </ul>
                                 </div>
-                            </div>`);
+                            </div>
+                        </div>`);
                     $("#wikiCont").html(wikiDiv);
                     $("#vid-input").val("");
-
                 }
-
             });
-
 
             // Youtube AJAX section.
             var apikey = "AIzaSyCWG4gCwFSmWaI4si9ItKsSBHtA80xMnEk";
@@ -124,7 +116,9 @@ $(document).ready(function () {
                 url: tubeQueryURL,
                 method: "GET"
             }).then(function (response) {
+
                 var item = response.items;
+
                 //console.log(response);
                 //console.log(response.items);
                 //console.log(item[0].snippet);
@@ -132,8 +126,9 @@ $(document).ready(function () {
 
                 var newDiv = $("<div class='vid-results'>");
 
-                //  Empty the video div ' vid-view' if it's occupied.
+                // Empty the video div 'vid-view' if it's occupied.
                 $("#vid-view").empty();
+
                 for (var i = 0; i < 5; i++) {
 
                     // JSON path.
@@ -142,8 +137,8 @@ $(document).ready(function () {
 
                     if (vidTitle.includes(searchData)) {
 
-                    // Append embedded videos inside of a cards with template literals.
-                    newDiv.append(`
+                        // Append embedded videos inside of a cards with template literals.
+                        newDiv.append(`
                         <div class="col s12 m6">
                             <div class="vid-color card center blue darken-4">
                                 <div class="card-content white-text">
@@ -159,40 +154,42 @@ $(document).ready(function () {
                             </div>
                         </div>`);
 
-                    $("#vid-view").append(newDiv);
+                        $("#vid-view").append(newDiv);
 
+                    };
                 };
+            });
 
-                setTimeout(function () {
+            // Update the "Likes" button with values from database. There is a (3) second delay.
+            setTimeout(function () {
 
-                    db.ref("vids").on("value", function (snap) {
+                db.ref("vids").on("value", function (snap) {
 
-                        data = snap.val();
-                        //console.log(data);
+                    data = snap.val();
+                    //console.log(data);
 
-                        urlKeys = Object.keys(data);
-                        //console.log(urlKeys);
+                    urlKeys = Object.keys(data);
+                    //console.log(urlKeys);
 
-                        for (var i = 0; i < urlKeys.length; i++) {
-                            urlArray1.push(urlKeys[i]);
-                            urlArray2.push(urlKeys[i] + "id");
+                    for (var i = 0; i < urlKeys.length; i++) {
+                        urlArray1.push(urlKeys[i]);
+                        urlArray2.push(urlKeys[i] + "id");
+                    };
 
-                        };
+                    for (var i = 0; i < urlArray2.length; i++) {
 
-                        for (var i = 0; i < urlArray2.length; i++) {
-                            dataChild = snap.child(urlArray1[i] + "/likes").val();
-                            console.log(dataChild);
-                            $('#' + urlArray2[i]).text("Likes:" + dataChild);
+                        dataChild = snap.child(urlArray1[i] + "/likes").val();
+                        //console.log(dataChild);
 
-                        };
-                    });
+                        $('#' + urlArray2[i]).text("Likes: " + dataChild);
 
+                    };
                 });
 
-            }, 3000);
+            }, 2000);
 
-            // By clicking the like button, create or update a 'likes' object in Firebase per videos. 
-            $(document).on("click", ".like-btn", function (e) {
+            // By clicking the "Like" button, create or update a 'likes' object in Firebase per video. 
+            $(document.body).on("click", ".like-btn", function (e) {
                 e.preventDefault();
 
                 var btnId = e.target.id;
@@ -207,7 +204,7 @@ $(document).ready(function () {
 
                     $('#' + btnId).text("Liked");
 
-                }, 1000);
+                }, 500);
 
                 urlArray1 = [];
                 urlArray2 = [];
@@ -222,8 +219,7 @@ $(document).ready(function () {
         }
     });
 
-    // adding the button code to navigate and change theme
-
+    // Menu button code to navigate and change theme.
     $(document).on("click", "#btn-search", function () {
         $('html,body').animate({
             scrollTop: $(".parallax-container").offset().top
@@ -231,7 +227,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#btn-theme", function () {
-        console.log("button works");
+        console.log("Theme button works.");
         $("#footer").toggleClass("blue darken-4");
         $("#toggle-image").toggleClass("toggle-image");
         $("#btn-theme").toggleClass("blue-grey lighten-3");
