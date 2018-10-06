@@ -18,7 +18,9 @@ $(document).ready(function () {
     console.log("Houston, we have code!");
     console.log(firebase);
 
-    $('.fixed-action-btn').floatingActionButton();
+    $(document).ready(function () {
+        $('.fixed-action-btn').floatingActionButton({ direction: "left" });
+    });
 
 
     $(".dropdown-trigger").dropdown();
@@ -30,6 +32,8 @@ $(document).ready(function () {
         $('html, body').animate({
             scrollTop: $("#results").offset().top
         }, 1000);
+
+
 
         // Both ajax calls can use the same input variable, 'searchData'.
         var searchData = $("#vid-input").val().trim();
@@ -59,7 +63,7 @@ $(document).ready(function () {
 
                     wikiDiv.append(`
                             <div class="col s12 m7">
-                                <div class="card horizontal">
+                                <div class=" wiki-color card horizontal blue darken-4">
                                     <div id="wikiText">
                                     <ul>
                                         <li>${wikiData[0]}</li><br>
@@ -101,7 +105,7 @@ $(document).ready(function () {
                     // Append embedded videos inside of a cards with template literals.
                     newDiv.append(`
                         <div class="col s12 m6">
-                            <div class="card center grey darken-4">
+                            <div class="vid-color card center blue darken-4">
                                 <div class="card-content white-text">
                                     <span class="card-title">${vidTitle}</span>
                                     <div class="resp-container">
@@ -174,4 +178,26 @@ $(document).ready(function () {
             });
         }
     });
+
+    // adding the button code to navigate and change theme
+
+    $(document).on("click", "#btn-search", function () {
+        $('html,body').animate({
+            scrollTop: $(".parallax-container").offset().top
+        }, 1000);
+    });
+
+    $(document).on("click", "#btn-theme", function () {
+        console.log("button works");
+        $("#footer").toggleClass("blue darken-4");
+        $("#toggle-image").toggleClass("toggle-image");
+        $("#btn-theme").toggleClass("blue-grey lighten-3");
+        $("#add-vid").toggleClass("blue accent-3");
+        $("#vid-input").toggleClass("input-txt");
+        $(".vid-color").toggleClass("blue darken-4");
+        $(".wiki-color").toggleClass("blue darken-4");
+        $("#results").toggleClass("dark-results");
+        
+    });
+
 });
