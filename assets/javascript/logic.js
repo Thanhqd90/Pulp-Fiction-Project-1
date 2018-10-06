@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    // add parallax theme
-    $('.parallax').parallax();
 
-    // Initialize Firebase
+    console.log("Houston, we have code!");
+
+    /* Initialize Thanh's Firebase API.
     var config = {
         apiKey: "AIzaSyB2VCD1HecsHeNm0svNtWC2dJ5mUz7X0Lg",
         authDomain: "classapp-7477b.firebaseapp.com",
@@ -11,24 +11,40 @@ $(document).ready(function () {
         storageBucket: "classapp-7477b.appspot.com",
         messagingSenderId: "360629441836"
     };
+    firebase.initializeApp(config); */
+
+    // Initialize Chris's Firebase API.
+    var config = {
+        apiKey: "AIzaSyCrKtFWtBgY5GMHypug24uzVVgCip8WRVY",
+        authDomain: "wikitube-71d68.firebaseapp.com",
+        databaseURL: "https://wikitube-71d68.firebaseio.com",
+        projectId: "wikitube-71d68",
+        storageBucket: "",
+        messagingSenderId: "601189842667"
+    };
+
     firebase.initializeApp(config);
 
-    var database = firebase.database();
-
-    console.log("Houston, we have code!");
-    console.log(firebase);
-
+    // Add parallax theme.
+    $('.parallax').parallax();
+    $('.fixed-action-btn').floatingActionButton();
     $(document).ready(function () {
         $('.fixed-action-btn').floatingActionButton({
             direction: "left"
         });
     });
 
+    // Global variables.
+    var db = firebase.database();
+    var data;
+    var urlKeys;
+    var urlArray1 = [];
+    var urlArray2 = [];
 
-    $(".dropdown-trigger").dropdown();
 
-    $(document.body).on("click", "#add-vid", function (event) {
-        event.preventDefault();
+
+    $(document.body).on("click", "#add-vid", function (e) {
+        e.preventDefault();
 
         // scroll to search results
         $('html, body').animate({
@@ -39,7 +55,7 @@ $(document).ready(function () {
 
         // Both ajax calls can use the same input variable, 'searchData'.
         var searchData = $("#vid-input").val().trim();
-        console.log(searchData);
+        //console.log(searchData);
 
         var wikiContent;
 
@@ -56,7 +72,7 @@ $(document).ready(function () {
                 dataType: "jsonp",
                 success: function (wiki) {
 
-                    console.log(wiki);
+                    //console.log(wiki);
 
                     var wikiData = wiki[2];
 
@@ -109,10 +125,10 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (response) {
                 var item = response.items;
-                console.log(response);
-                console.log(response.items);
-                console.log(item[0].snippet);
-                console.log(item[0].snippet.title);
+                //console.log(response);
+                //console.log(response.items);
+                //console.log(item[0].snippet);
+                //console.log(item[0].snippet.title);
 
                 var newDiv = $("<div class='vid-results'>");
 
@@ -133,72 +149,74 @@ $(document).ready(function () {
                                 <div class="card-content white-text">
                                     <span class="card-title">${vidTitle}</span>
                                     <div class="resp-container">
-                                        <iframe class="resp-iframe" src="https://www.youtube.com/embed/${vidURL}" gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
+                                        <iframe class="resp-iframe" src="https://www.youtube.com/embed/${vidURL}" allow="encrypted-media; autoplay; fullscreen"></iframe>
                                     </div>
                                 </div>
                                 <div class="card-action">
-                                    <button id="${vidURL}" class="btn like-button waves-effect waves-light light-blue" type="submit" name="action">Like this video: <i class="far fa-thumbs-up"></i></button>
-                                    <button id="${vidURL}" class="btn like-button waves-effect waves-light red" type="submit" name="action">Likes:  0</button>
+                                    <button id="${vidURL}" class="btn like-btn waves-effect waves-light light-blue" type="submit" name="action"><i class="far fa-thumbs-up"></i> Like</button>
+                                    <button id="${vidURL + "id"}"class="btn waves-effect waves-light red" type="submit" name="action">Likes:  0</button>
                                 </div>
                             </div>
                         </div>`);
 
                     $("#vid-view").append(newDiv);
 
-                    var vLikes = database.ref("vids/" + vidURL);
-
-                    vLikes.set({
-                        likes: false
-                    });
-                }
-            }
-
-
-
-
-            });
-
-            $(document).on("click", ".like-button", function (event) {
-                event.preventDefault();
-
-                var btnId = event.target.id;
-                console.log(btnId);
-
-                var vLikesUp = database.ref("vids/" + btnId + "/");
-                console.log("This is what we are looking for" + btnId);
+                };
 
                 setTimeout(function () {
 
-                    vLikesUp.set({
-                        likes: true
+                    db.ref("vids").on("value", function (snap) {
+
+                        data = snap.val();
+                        //console.log(data);
+
+                        urlKeys = Object.keys(data);
+                        //console.log(urlKeys);
+
+                        for (var i = 0; i < urlKeys.length; i++) {
+                            urlArray1.push(urlKeys[i]);
+                            urlArray2.push(urlKeys[i] + "id");
+
+                        };
+
+                        for (var i = 0; i < urlArray2.length; i++) {
+                            dataChild = snap.child(urlArray1[i] + "/likes").val();
+                            console.log(dataChild);
+                            $('#' + urlArray2[i]).text("Likes:" + dataChild);
+
+                        };
                     });
 
-                }, 500);
-                $('.like-button').text("liked");
-            });
+                });
 
-            database.ref().on("value", function (snapshot) {
+            }, 3000);
 
-                // Then we console.log the value of snapshot
-                console.log(snapshot.val());
+            // By clicking the like button, create or update a 'likes' object in Firebase per videos. 
+            $(document).on("click", ".like-btn", function (e) {
+                e.preventDefault();
 
-                // Then we change the html associated with the number.
-                //$(".like-count0").text(snapshot.val().likeCount);
-                //$(".like-count1").text(snapshot.val().likeCount);
-                //$(".like-count2").text(snapshot.val().likeCount);
-                // $(".like-count3").text(snapshot.val().likeCount);
-                //$(".like-count4").text(snapshot.val().likeCount);
+                var btnId = e.target.id;
+                console.log(btnId);
 
-                //likeCounter = snapshot.val().likes;
-            }, function (errorObject) {
+                var iterateLikes = db.ref("vids/" + btnId + "/likes");
 
-                // In case of error this will print the error
-                console.log("The read failed: " + errorObject.code);
+                setTimeout(function () {
+                    iterateLikes.transaction(function (likes) {
+                        return likes + 1;
+                    });
+
+                    $('#' + btnId).text("Liked");
+
+                }, 1000);
+
+                urlArray1 = [];
+                urlArray2 = [];
+
             });
 
             // Event to download the Wiki content in a plaint text document.
-            $(document).on("click", "#btn-archive", function (event) {
-                event.preventDefault();
+            $(document).on("click", "#btn-archive", function (e) {
+                e.preventDefault();
                 download(wikiContent, searchData + ".txt", "text/plain");
             });
         }
