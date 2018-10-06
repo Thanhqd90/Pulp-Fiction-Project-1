@@ -11,9 +11,12 @@
   <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wiki+Tube</title>
 </head>
 
 <body>
@@ -23,19 +26,19 @@
   <!-- Search Area -->
 
   <div class="parallax-container">
-    <div class="parallax"><img src="./assets/images/wall2.jpg"></div>
+    <div id="toggle-image" class="parallax"><img src="./assets/images/wall2.jpg"></div>
     <div id="search-area" class="container">
       <form id="vid-form" class="center form-inline">
-        <input id="vid-input" class="center form-control mr-sm-2" type="search" placeholder="Search anything..."
+        <input id="vid-input" class="center form-control mr-sm-2 input-txt" type="search" placeholder="Search anything..."
           aria-label="Search">
-        <input id="add-vid" class="btn blue accent-3 my-2 my-sm-0" type="submit" value="Submit">
+        <input id="add-vid" class="btn blue accent-3 blue-grey my-2 my-sm-0" type="submit" value="Submit">
       </form>
     </div>
   </div>
 
   <!-- search results -->
 
-  <div id="results">
+  <div id="results" class="light-results dark-results">
     <div id="wikiCont" class="wiki-results"></div>
     <br>
     <div id="vid-view" class="vid-results"></div>
@@ -43,7 +46,7 @@
 
   <!-- footer -->
 
-  <div class="footer blue darken-4">
+  <div id="footer" class="footer blue darken-4">
     <a class="center white-text brand-logo">
       <h5>Wiki+Tube</h5>
     </a>
@@ -52,10 +55,9 @@
         <i class="large material-icons">mode_edit</i>
       </a>
       <ul>
-        <li><a class="btn-floating red"><i class="material-icons">add_box</i></a></li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a id="btn-archive" class="btn-floating blue"><i class="material-icons">archive</i></a></li>
+        <li><a id="btn-theme" class="btn-floating blue-grey lighten-3 black"><i class="material-icons">flip_to_back</i></a></li>
+        <li><a id="btn-search" class="btn-floating green"><i class="material-icons">search</i></a></li>
+        <li><a id="btn-archive" class="btn-floating red"><i class="material-icons">archive</i></a></li>
       </ul>
     </div>
   </div>
@@ -63,7 +65,6 @@
 
   <!--JavaScript at end of body for optimized loading-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
   <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
   <script src="assets/javascript/download.js" type="text/javascript"></script>
   <script src="assets/javascript/logic.js" type="text/javascript"></script>
