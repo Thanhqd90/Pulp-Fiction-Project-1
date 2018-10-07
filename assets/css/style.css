@@ -30,7 +30,7 @@ input::placeholder{
 }
 
 #vid-view {
-    margin-bottom: 8%;
+    margin-bottom: 6%;
 }
 
 #results {
@@ -60,8 +60,8 @@ input::placeholder{
 
 .wiki-results {
     width: 30%;
-    position: absolute;
-    bottom: -40%;
+    position: fixed;
+    bottom: 15%;
     right: 10%; 
     color: rgb(251, 251, 251);
     font-style: italic;
@@ -86,6 +86,7 @@ input::placeholder{
 
 .parallax-container {
     height: 100%;
+    z-index: 3;
 }
 
 .parallax {
