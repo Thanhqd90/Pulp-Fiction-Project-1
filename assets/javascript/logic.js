@@ -43,10 +43,9 @@ $(document).ready(function () {
     $(document.body).on("click", "#add-vid", function (e) {
         e.preventDefault();
 
-        // Scroll to search results.
-        $('html, body').animate({
-            scrollTop: $("#results").offset().top
-        }, 1000);
+
+
+        $("#loader").html("<div class='preloader-wrapper big active'><div class='spinner-layer spinner-blue-only'><div class='circle-clipper left'><div class='circle'></div></div><div class='gap-patch'><div class='circle'></div></div><div class='circle-clipper right'><div class='circle'></div> </div></div></div>");
 
         // Both AJAX calls can use the same input variable, 'searchData'.
         var searchData = $("#vid-input").val().trim();
@@ -89,7 +88,15 @@ $(document).ready(function () {
                         }, 2000);
                     }
 
-                    wikiDiv.append(`
+                    // set time out function for loader
+                    setTimeout(function () {
+
+                        // Scroll to search results.
+                        $('html, body').animate({
+                            scrollTop: $("#results").offset().top
+                        }, 1000);
+
+                        wikiDiv.append(`
                         <div class="col s12 m7">
                             <div class=" wiki-color card horizontal blue darken-4">
                                 <div id="wikiText">
@@ -102,8 +109,10 @@ $(document).ready(function () {
                                 </div>
                             </div>
                         </div>`);
-                    $("#wikiCont").html(wikiDiv);
-                    $("#vid-input").val("");
+                        $("#wikiCont").html(wikiDiv);
+                        $("#vid-input").val("");
+                        $("#loader").html("");
+                    }, 1500);
                 }
             });
 
@@ -137,29 +146,31 @@ $(document).ready(function () {
 
                     if (vidTitle.includes(searchData)) {
 
-                        // Append embedded videos inside of a cards with template literals.
-                        newDiv.append(`
-                        <div class="col s12 m6">
-                            <div class="vid-color card center blue darken-4">
-                                <div class="card-content white-text">
-                                    <span class="card-title">${vidTitle}</span>
-                                    <div class="resp-container">
-                                        <iframe class="resp-iframe" src="https://www.youtube.com/embed/${vidURL}" allow="encrypted-media; autoplay; fullscreen"></iframe>
+                        setTimeout(function () {
+                            // Append embedded videos inside of a cards with template literals.
+                            newDiv.append(`
+                             <div class="col s12 m6">
+                                 <div class="vid-color card center blue darken-4">
+                                     <div class="card-content white-text">
+                                         <span class="card-title">${vidTitle}</span>
+                                            <div class="resp-container">
+                                                <iframe class="resp-iframe" src="https://www.youtube.com/embed/${vidURL}" allow="encrypted-media; autoplay; fullscreen"></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="card-action">
+                                            <button id="${vidURL}" class="btn like-btn waves-effect waves-light light-blue" type="submit" name="action"><i class="far fa-thumbs-up"></i> Like</button>
+                                         <button id="${vidURL + "id"}"class="btn waves-effect waves-light red" type="submit" name="action">Likes:  0</button>
+                                     </div>
                                     </div>
-                                </div>
-                                <div class="card-action">
-                                    <button id="${vidURL}" class="btn like-btn waves-effect waves-light light-blue" type="submit" name="action"><i class="far fa-thumbs-up"></i> Like</button>
-                                    <button id="${vidURL + "id"}"class="btn waves-effect waves-light red" type="submit" name="action">Likes:  0</button>
-                                </div>
-                            </div>
-                        </div>`);
+                                </div>`);
 
-                        $("#vid-view").append(newDiv);
-
+                            $("#vid-view").append(newDiv);
+                        }, 1500);
                     }
                     else {
-                    continue
+                        continue
                     };
+
                 };
             });
 

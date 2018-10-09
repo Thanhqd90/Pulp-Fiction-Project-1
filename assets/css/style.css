@@ -86,7 +86,7 @@ input::placeholder{
 
 .parallax-container {
     height: 100%;
-    z-index: 3;
+    /* z-index: 3; */
 }
 
 .parallax {
@@ -136,4 +136,8 @@ input::placeholder{
     position: relative;
     overflow: hidden;
     padding-top: 56.25%;
+}
+
+#loader {
+    margin-top: 10px;
 }
