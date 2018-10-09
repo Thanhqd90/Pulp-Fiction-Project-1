@@ -129,7 +129,7 @@ $(document).ready(function () {
                 // Empty the video div 'vid-view' if it's occupied.
                 $("#vid-view").empty();
 
-                for (var i = 0; i < 5; i++) {
+                for (var i = 0; i < 7; i++) {
 
                     // JSON path.
                     var vidTitle = item[i].snippet.title;
@@ -156,6 +156,9 @@ $(document).ready(function () {
 
                         $("#vid-view").append(newDiv);
 
+                    }
+                    else {
+                    continue
                     };
                 };
             });

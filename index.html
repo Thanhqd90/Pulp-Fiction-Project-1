@@ -58,8 +58,56 @@
         <li><a id="btn-theme" class="btn-floating blue-grey lighten-3 black"><i class="material-icons">flip_to_back</i></a></li>
         <li><a id="btn-search" class="btn-floating green"><i class="material-icons">search</i></a></li>
         <li><a id="btn-archive" class="btn-floating red"><i class="material-icons">archive</i></a></li>
+        <li><a class="waves-effect waves-light btn red darken-1 modal-trigger" href="#demo-modal">Meet the team</a></li>
       </ul>
     </div>
+  </div>
+  
+  <div id="demo-modal" class="modal">
+    <div class="modal-content">
+    <ul class="collection">
+      <!--  Sean  -->
+        <li class="collection-item avatar">
+          <img src="./assets/images/sean.jpg" alt="headshot1" class="circle">
+          <span class="title">Sean Brennan</span>
+          <p> Wiki+Tube Front-end Developer <br>
+             Front-end Designer
+          </p>
+          <a href="https://github.com/SeanB333" class="secondary-content"><i class="material-icons"></i>SeanB333</a>
+        </li>
+     <!--  Thanh  -->
+        <li class="collection-item avatar">
+          <img src="./assets/images/thanh.jpg" alt="headshot2" class="circle">
+          <span class="title">Thanh Dang</span>
+          <p>Wiki+Tube Back-end Developer <br>
+             YouTube API Specialist<br>
+          </p>
+          <a href="https://github.com/Thanhqd0" class="secondary-content"><i class="material-icons"></i>Thanhqd90</a>
+        </li>
+    <!--  Chris  -->
+        <li class="collection-item avatar">
+          <img src="./assets/images/chris.jpg" alt="headshot3" class="circle">
+          <span class="title">Chris Meza</span>
+          <p>Wiki+Tube Back-end Developer  <br>
+            Wikipedia API + Firebase Specialist
+          </p>
+          <a href="https://github.com/cm3z4" class="secondary-content"><i class="material-icons"></i>cm3z4</a>
+        </li>
+    <!--  Diana  -->
+        <li class="collection-item avatar">
+          <img src="./assets/images/diana.jpeg" alt="headshot1" class="circle">
+          <span class="title">Diana Viana</span>
+          <p>Wiki+Tube Front-end Developer <br>
+             Front-end Features
+          </p>
+          <a href="https://github.com/LamarC" class="secondary-content"><i class="material-icons"></i>LamarC</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn red darken-2">Close</a>
+</div>
   </div>
 
 
@@ -68,6 +116,11 @@
   <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
   <script src="assets/javascript/download.js" type="text/javascript"></script>
   <script src="assets/javascript/logic.js" type="text/javascript"></script>
+
+<script>
+  $('.modal').modal();
+</script>
+
 </body>
 
 </html>
