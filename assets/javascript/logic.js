@@ -42,11 +42,10 @@ $(document).ready(function () {
 
     $(document.body).on("click", "#add-vid", function (e) {
         e.preventDefault();
-
-
-
+     
+        // video loader code 
         $("#loader").html("<div class='preloader-wrapper big active'><div class='spinner-layer spinner-blue-only'><div class='circle-clipper left'><div class='circle'></div></div><div class='gap-patch'><div class='circle'></div></div><div class='circle-clipper right'><div class='circle'></div> </div></div></div>");
-
+        $("#vid-view").css("margin-bottom","6%")
         // Both AJAX calls can use the same input variable, 'searchData'.
         var searchData = $("#vid-input").val().trim();
 
@@ -166,8 +165,7 @@ $(document).ready(function () {
 
                             $("#vid-view").append(newDiv);
                         }, 1500);
-                    }
-                    else {
+                    } else {
                         continue
                     };
 
@@ -261,7 +259,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#btn-theme", function () {
-        console.log("Theme button works.");
+        console.log($("#vid-view").html());
         $("#footer").toggleClass("blue darken-4");
         $("#toggle-image").toggleClass("toggle-image");
         $("#btn-theme").toggleClass("blue-grey lighten-3");
@@ -270,7 +268,15 @@ $(document).ready(function () {
         $(".vid-color").toggleClass("blue darken-4");
         $(".wiki-color").toggleClass("blue darken-4");
         $("#results").toggleClass("dark-results");
-
+        
+            if ($("#vid-view").html() !== "") {
+                // $("#add-vid").toggleClass("blue accent-3");
+                // $("#vid-input").toggleClass("input-txt");
+                $(".vid-color").toggleClass("blue darken-4");
+                $(".wiki-color").toggleClass("blue darken-4");
+                // $("#results").toggleClass("dark-results");
+            }
+        
     });
 
 });

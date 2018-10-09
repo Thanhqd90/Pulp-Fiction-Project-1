@@ -29,10 +29,6 @@ input::placeholder{
     font-size: 125%;
 }
 
-#vid-view {
-    margin-bottom: 6%;
-}
-
 #results {
     transition: background-image 2s;
 }
@@ -86,7 +82,6 @@ input::placeholder{
 
 .parallax-container {
     height: 100%;
-    /* z-index: 3; */
 }
 
 .parallax {
