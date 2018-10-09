@@ -117,7 +117,7 @@ $(document).ready(function () {
 
             // Youtube AJAX section.
             var apikey = "AIzaSyCWG4gCwFSmWaI4si9ItKsSBHtA80xMnEk";
-            var tubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchData + "type=video&fields=etag%2Citems%2Ckind%2CnextPageToken%2CpageInfo%2CregionCode&key=" + apikey;
+            var tubeQueryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=" + searchData + "type=video&fields=etag%2Citems%2Ckind%2CnextPageToken%2CpageInfo%2CregionCode&key=" + apikey;
 
             // Create an AJAX call to the YouTube API.
             $.ajax({
@@ -137,7 +137,7 @@ $(document).ready(function () {
                 // Empty the video div 'vid-view' if it's occupied.
                 $("#vid-view").empty();
 
-                for (var i = 0; i < 7; i++) {
+                for (var i = 0; i < 10; i++) {
 
                     // JSON path.
                     var vidTitle = item[i].snippet.title;
@@ -145,10 +145,10 @@ $(document).ready(function () {
 
                     if (vidTitle.includes(searchData)) {
 
-                        setTimeout(function () {
+                    
                             // Append embedded videos inside of a cards with template literals.
                             newDiv.append(`
-                             <div class="col s12 m6">
+                             <div class="col s6 m6">
                                  <div class="vid-color card center blue darken-4">
                                      <div class="card-content white-text">
                                          <span class="card-title">${vidTitle}</span>
@@ -164,10 +164,8 @@ $(document).ready(function () {
                                 </div>`);
 
                             $("#vid-view").append(newDiv);
-                        }, 1500);
-                    } else {
-                        continue
-                    };
+                    }
+                    
 
                 };
             });

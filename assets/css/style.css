@@ -55,7 +55,7 @@ input::placeholder{
 }
 
 .wiki-results {
-    width: 30%;
+    width: 35%;
     position: absolute;
     margin-top: 5%;
     right: 10%; 
@@ -66,8 +66,8 @@ input::placeholder{
 }
 
 .vid-results {
-    width: 70%;
-    margin-left: 2%;
+    width: 65%;
+    margin-left: 3%;
 }
 
 .vid-color {
