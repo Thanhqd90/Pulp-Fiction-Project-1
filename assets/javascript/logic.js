@@ -174,6 +174,17 @@ $(document).ready(function () {
                     for (var i = 0; i < urlKeys.length; i++) {
                         urlArray1.push(urlKeys[i]);
                         urlArray2.push(urlKeys[i] + "id");
+
+                    };
+
+                    for (var i = 0; i < urlArray1.length; i++) {
+
+                        if (urlArray1[i] in localStorage) {
+                            //console.log("Yep, it's in local storage.");
+
+                            // This is where to change the liked icon, second case.
+                            $('#' + urlArray1[i]).text("Liked!");
+                        };
                     };
 
                     for (var i = 0; i < urlArray2.length; i++) {
@@ -184,6 +195,7 @@ $(document).ready(function () {
                         $('#' + urlArray2[i]).text("Likes: " + dataChild);
 
                     };
+
                 });
 
             }, 2000);
@@ -195,16 +207,24 @@ $(document).ready(function () {
                 var btnId = e.target.id;
                 console.log(btnId);
 
-                var iterateLikes = db.ref("vids/" + btnId + "/likes");
+                if (btnId in localStorage) {
+                    //console.log("Already in local storage.");
+                } else {
+                    var iterateLikes = db.ref("vids/" + btnId + "/likes");
 
-                setTimeout(function () {
-                    iterateLikes.transaction(function (likes) {
-                        return likes + 1;
-                    });
+                    setTimeout(function () {
+                        iterateLikes.transaction(function (likes) {
+                            return likes + 1;
+                        });
 
-                    $('#' + btnId).text("Liked");
+                        // Save btnId to localStorage set to null.
+                        localStorage.setItem(btnId, null);
 
-                }, 500);
+                        // This is where to change the liked icon, first case.
+                        $('#' + btnId).text("Liked!");
+
+                    }, 500);
+                };
 
                 urlArray1 = [];
                 urlArray2 = [];
