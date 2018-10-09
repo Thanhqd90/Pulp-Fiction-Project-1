@@ -56,8 +56,8 @@ input::placeholder{
 
 .wiki-results {
     width: 30%;
-    position: fixed;
-    bottom: 15%;
+    position: absolute;
+    margin-top: 5%;
     right: 10%; 
     color: rgb(251, 251, 251);
     font-style: italic;

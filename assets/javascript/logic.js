@@ -269,14 +269,6 @@ $(document).ready(function () {
         $(".wiki-color").toggleClass("blue darken-4");
         $("#results").toggleClass("dark-results");
         
-            if ($("#vid-view").html() !== "") {
-                // $("#add-vid").toggleClass("blue accent-3");
-                // $("#vid-input").toggleClass("input-txt");
-                $(".vid-color").toggleClass("blue darken-4");
-                $(".wiki-color").toggleClass("blue darken-4");
-                // $("#results").toggleClass("dark-results");
-            }
-        
     });
 
 });
