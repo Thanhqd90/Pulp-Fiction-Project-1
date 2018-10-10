@@ -92,7 +92,6 @@ input::placeholder {
 
 .search-height {
     height: 100%;
-    ;
 }
 
 .footer {
@@ -168,12 +167,12 @@ body:before {
         text-shadow: 2px 2px 4px #000000;
     }
 
-     .vid-results {
+    .vid-results {
         width: 94%;
         margin-left: 3%;
-     }
+    }
 
-     .card .card-title {
+    .card .card-title {
          font-size: 20px;
-     }
+    }
 }

@@ -2,49 +2,45 @@
 <html>
 
 <head>
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-    crossorigin="anonymous">
-  <!--Import materialize.css-->
-  <link rel="stylesheet" href="assets/css/reset.css" />
-  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-  <link rel="icon" href="./favicon.ico" type="image/x-icon">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous" />
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="assets/css/reset.css" />
+  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>Wiki+Tube</title>
 </head>
 
 <body>
 
-
-
-  <!-- Search Area -->
-
+  <!-- Search area -->
   <div class="parallax-container">
     <div id="toggle-image" class="parallax"><img src="./assets/images/wall2.jpg"></div>
     <div id="search-area" class="container">
       <form id="vid-form" class="center form-inline">
-        <input id="vid-input" class="center form-control mr-sm-2 input-txt" type="search" placeholder="Search anything..."
+        <input id="vid-input" class="center form-control mr-sm-2 input-txt" type="search" placeholder="Search anything"
           aria-label="Search" style="font-size:30px; font-weight:bold">
-        <input id="add-vid" class="btn blue accent-3 blue-grey my-2 my-sm-0" type="submit" value="Submit"><div id="loader"></div>
+        <input id="add-vid" class="btn blue accent-3 blue-grey my-2 my-sm-0" type="submit" value="Submit">
+        <div id="loader"></div>
       </form>
     </div>
   </div>
 
-  <!-- search results -->
-
+  <!-- Search results -->
   <div id="results" class="light-results dark-results">
     <div id="wikiCont" class="wiki-results"></div>
     <br>
     <div id="vid-view" class="vid-results"></div>
   </div>
 
-  <!-- footer -->
+  <!-- Footer -->
 
   <div id="footer" class="footer blue darken-4">
     <a class="center white-text brand-logo">
@@ -62,64 +58,61 @@
       </ul>
     </div>
   </div>
-  
+
+  <!-- Model -->
   <div id="demo-modal" class="modal">
     <div class="modal-content">
-    <ul class="collection">
-      <!--  Sean  -->
+      <ul class="collection">
+        <!-- Sean -->
         <li class="collection-item avatar">
           <img src="./assets/images/sean.jpg" alt="headshot1" class="circle">
           <span class="title">Sean Brennan</span>
           <p> Wiki+Tube Front-end Developer <br>
-             Front-end Designer
+            Front-end Designer
           </p>
           <a href="https://github.com/SeanB333" class="secondary-content"><i class="material-icons"></i>SeanB333</a>
         </li>
-     <!--  Thanh  -->
+        <!-- Thanh -->
         <li class="collection-item avatar">
           <img src="./assets/images/thanh.jpg" alt="headshot2" class="circle">
           <span class="title">Thanh Dang</span>
           <p>Wiki+Tube Back-end Developer <br>
-             YouTube API Specialist<br>
+            YouTube API Specialist
           </p>
           <a href="https://github.com/Thanhqd0" class="secondary-content"><i class="material-icons"></i>Thanhqd90</a>
         </li>
-    <!--  Chris  -->
+        <!-- Chris -->
         <li class="collection-item avatar">
           <img src="./assets/images/chris.jpg" alt="headshot3" class="circle">
           <span class="title">Chris Meza</span>
-          <p>Wiki+Tube Back-end Developer  <br>
+          <p>Wiki+Tube Back-end Developer <br>
             Wikipedia API + Firebase Specialist
           </p>
           <a href="https://github.com/cm3z4" class="secondary-content"><i class="material-icons"></i>cm3z4</a>
         </li>
-    <!--  Diana  -->
+        <!-- Diana -->
         <li class="collection-item avatar">
           <img src="./assets/images/diana.jpeg" alt="headshot1" class="circle">
           <span class="title">Diana Viana</span>
           <p>Wiki+Tube Front-end Developer <br>
-             Front-end Features
+            Front-end Features
           </p>
           <a href="https://github.com/LamarC" class="secondary-content"><i class="material-icons"></i>LamarC</a>
         </li>
       </ul>
     </div>
 
+    <!-- Model footer -->
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-red btn red darken-2">Close</a>
-</div>
+    </div>
   </div>
 
-
-  <!--JavaScript at end of body for optimized loading-->
+  <!-- JavaScript at the end of body for optimized loading. -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
   <script src="assets/javascript/download.js" type="text/javascript"></script>
   <script src="assets/javascript/logic.js" type="text/javascript"></script>
-
-<script>
-  $('.modal').modal();
-</script>
 
 </body>
 
