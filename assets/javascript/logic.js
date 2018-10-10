@@ -1,8 +1,6 @@
 $(document).ready(function () {
 
-    console.log("Houston, we have code!");
-
-    /* Initialize Thanh's Firebase API.
+    /* Initialize Thanh's Firebase API. (Alternative)
     var config = {
         apiKey: "AIzaSyB2VCD1HecsHeNm0svNtWC2dJ5mUz7X0Lg",
         authDomain: "classapp-7477b.firebaseapp.com",
@@ -11,6 +9,7 @@ $(document).ready(function () {
         storageBucket: "classapp-7477b.appspot.com",
         messagingSenderId: "360629441836"
     };
+
     firebase.initializeApp(config); */
 
     // Initialize Chris's Firebase API.
@@ -33,6 +32,9 @@ $(document).ready(function () {
         direction: "left"
     });
 
+    // Model trigger.
+    $('.modal').modal();
+
     // Global variables.
     var db = firebase.database();
     var data;
@@ -42,14 +44,13 @@ $(document).ready(function () {
 
     $(document.body).on("click", "#add-vid", function (e) {
         e.preventDefault();
-     
-        // video loader code 
+
+        // Video loader code.
         $("#loader").html("<div class='preloader-wrapper big active'><div class='spinner-layer spinner-blue-only'><div class='circle-clipper left'><div class='circle'></div></div><div class='gap-patch'><div class='circle'></div></div><div class='circle-clipper right'><div class='circle'></div> </div></div></div>");
-        $("#vid-view").css("margin-bottom","6%")
+        $("#vid-view").css("margin-bottom", "7.5%");
+
         // Both AJAX calls can use the same input variable, 'searchData'.
         var searchData = $("#vid-input").val().trim();
-
-        //console.log(searchData);
 
         // Local variable.
         var wikiContent;
@@ -65,8 +66,6 @@ $(document).ready(function () {
                 dataType: "jsonp",
                 success: function (wiki) {
 
-                    //console.log(wiki);
-
                     // Local variable.
                     var wikiData = wiki[2];
 
@@ -76,18 +75,19 @@ $(document).ready(function () {
                     var wikiDiv = $("<div class='wikiData'>");
 
                     if (wikiContent.length === 0) {
-                        $('#vid-input').attr('placeholder', 'No Results Found.');
+                        $('#vid-input').attr('placeholder', 'No results found');
                         $("#vid-view").empty();
                         wikiDiv.hide();
 
+                        // Set a (2.5) second delay.
                         setTimeout(function () {
 
-                            $('#vid-input').attr('placeholder', 'Search Anything...');
+                            $('#vid-input').attr('placeholder', 'Search anything');
 
-                        }, 2000);
-                    }
+                        }, 2500);
+                    };
 
-                    // set time out function for loader
+                    // Set a (1.5) second delay.
                     setTimeout(function () {
 
                         // Scroll to search results.
@@ -127,11 +127,6 @@ $(document).ready(function () {
 
                 var item = response.items;
 
-                //console.log(response);
-                //console.log(response.items);
-                //console.log(item[0].snippet);
-                //console.log(item[0].snippet.title);
-
                 var newDiv = $("<div class='vid-results'>");
 
                 // Empty the video div 'vid-view' if it's occupied.
@@ -145,9 +140,8 @@ $(document).ready(function () {
 
                     if (vidTitle.includes(searchData)) {
 
-                    
-                            // Append embedded videos inside of a cards with template literals.
-                            newDiv.append(`
+                        // Append embedded videos inside of a cards with template literals.
+                        newDiv.append(`
                              <div class="col s6 m6">
                                  <div class="vid-color card center blue darken-4">
                                      <div class="card-content white-text">
@@ -163,36 +157,30 @@ $(document).ready(function () {
                                     </div>
                                 </div>`);
 
-                            $("#vid-view").append(newDiv);
-                    }
-                    
+                        $("#vid-view").append(newDiv);
 
+                    };
                 };
             });
 
-            // Update the "Likes" button with values from database. There is a (3) second delay.
+            // Update the "Likes" button with values from database. There is a (2) second delay.
             setTimeout(function () {
 
                 db.ref("vids").on("value", function (snap) {
 
                     data = snap.val();
-                    //console.log(data);
 
                     urlKeys = Object.keys(data);
-                    //console.log(urlKeys);
 
                     for (var i = 0; i < urlKeys.length; i++) {
                         urlArray1.push(urlKeys[i]);
                         urlArray2.push(urlKeys[i] + "id");
-
                     };
 
                     for (var i = 0; i < urlArray1.length; i++) {
 
                         if (urlArray1[i] in localStorage) {
-                            //console.log("Yep, it's in local storage.");
 
-                            // This is where to change the liked icon, second case.
                             $('#' + urlArray1[i]).text("Liked!");
                         };
                     };
@@ -200,14 +188,10 @@ $(document).ready(function () {
                     for (var i = 0; i < urlArray2.length; i++) {
 
                         dataChild = snap.child(urlArray1[i] + "/likes").val();
-                        //console.log(dataChild);
 
                         $('#' + urlArray2[i]).text("Likes: " + dataChild);
-
                     };
-
                 });
-
             }, 2000);
 
             // By clicking the "Like" button, create or update a 'likes' object in Firebase per video. 
@@ -215,10 +199,9 @@ $(document).ready(function () {
                 e.preventDefault();
 
                 var btnId = e.target.id;
-                console.log(btnId);
 
                 if (btnId in localStorage) {
-                    //console.log("Already in local storage.");
+
                 } else {
                     var iterateLikes = db.ref("vids/" + btnId + "/likes");
 
@@ -227,18 +210,15 @@ $(document).ready(function () {
                             return likes + 1;
                         });
 
-                        // Save btnId to localStorage set to null.
+                        // Save btnId to localStorage, set to null.
                         localStorage.setItem(btnId, null);
 
-                        // This is where to change the liked icon, first case.
                         $('#' + btnId).text("Liked!");
-
                     }, 500);
                 };
 
                 urlArray1 = [];
                 urlArray2 = [];
-
             });
 
             // Event to download the Wiki content in a plaint text document.
@@ -246,7 +226,7 @@ $(document).ready(function () {
                 e.preventDefault();
                 download(wikiContent, searchData + ".txt", "text/plain");
             });
-        }
+        };
     });
 
     // Menu button code to navigate and change theme.
@@ -266,7 +246,5 @@ $(document).ready(function () {
         $(".vid-color").toggleClass("blue darken-4");
         $(".wiki-color").toggleClass("blue darken-4");
         $("#results").toggleClass("dark-results");
-        
     });
-
 });
