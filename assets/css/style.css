@@ -1,18 +1,19 @@
 body {
-    box-shadow: 0px 0px 10px rgba(0,0,0,.8);   
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
 }
 
 nav {
     font-family: 'Luckiest Guy', cursive;
 }
-.input-txt::placeholder{
+
+.input-txt::placeholder {
     color: rgb(128, 126, 126);
     font-style: italic;
     font-size: 30px;
     text-shadow: 2px 2px 8px #959595;
 }
 
-input::placeholder{
+input::placeholder {
     color: rgb(136, 136, 136);
     font-style: italic;
     font-size: 30px;
@@ -38,12 +39,13 @@ input::placeholder{
 }
 
 .light-results {
-    background-image: url(../images/resultWall-light.jpg); 
+    background-image: url(../images/resultWall-light.jpg);
     transition: background-image 2s;
     background-attachment: fixed;
 }
+
 .dark-results {
-    background-image: url(../images/resultWall-dark.jpg); 
+    background-image: url(../images/resultWall-dark.jpg);
     transition: background-image 2s;
     background-attachment: fixed;
 }
@@ -58,11 +60,11 @@ input::placeholder{
     width: 35%;
     position: absolute;
     margin-top: 5%;
-    right: 10%; 
+    right: 10%;
     color: rgb(251, 251, 251);
     font-style: italic;
     font-size: 20px;
-    text-shadow: 2px 2px 4px #000000; 
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .vid-results {
@@ -89,7 +91,8 @@ input::placeholder{
 }
 
 .search-height {
-    height: 100%;;
+    height: 100%;
+    ;
 }
 
 .footer {
@@ -97,24 +100,24 @@ input::placeholder{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color:#607d8b;
+    background-color: #607d8b;
     color: white;
     text-align: center;
-    padding: 1.3%;
+    padding: 25px;
     font-family: 'Luckiest Guy', cursive;
     z-index: 2;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
     transition: background-color 2s;
- }
+}
 
- body:before {
+body:before {
     content: "";
     position: fixed;
     top: -10px;
     left: 0;
     width: 100%;
     height: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
     z-index: 100;
 }
 
@@ -135,4 +138,42 @@ input::placeholder{
 
 #loader {
     margin-top: 10px;
+}
+
+@media only screen and (max-width: 640px) {
+    .wiki-results {
+        width: 80%;
+        margin-top: 5%;
+        color: rgb(251, 251, 251);
+        font-style: italic;
+        font-size: 16px;
+        text-shadow: 2px 2px 4px #000000;
+    }
+
+    #vid-view {
+        margin-top: 350px;
+    }
+
+    .input-txt::placeholder {
+        color: rgb(128, 126, 126);
+        font-style: italic;
+        font-size: 20px;
+        text-shadow: 2px 2px 8px #959595;
+    }
+
+    input::placeholder {
+        color: rgb(136, 136, 136);
+        font-style: italic;
+        font-size: 20px;
+        text-shadow: 2px 2px 4px #000000;
+    }
+
+     .vid-results {
+        width: 94%;
+        margin-left: 3%;
+     }
+
+     .card .card-title {
+         font-size: 20px;
+     }
 }
